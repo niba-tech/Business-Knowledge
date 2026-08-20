@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PAGE_TITLE}}</title>
+<!-- ------------------------------------------------------------------
+     SKILL TEMPLATE — media-to-insights
+     Replace every {{TOKEN}} and fill the body sections. Keep the file
+     fully self-contained: the thumbnail must be embedded as a base64
+     data-URI in {{THUMB_SRC}} (see the note on the <img> below).
+     Optional external dependency: Google Fonts (graceful offline fallback).
+------------------------------------------------------------------- -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#eaf0ff;
+    --muted:#9aa7c4;
+    --cream:#f4efe6;
+    --bg0:#0c1020;
+    --bg1:#101731;
+    --bg2:#141c3a;
+    --line:rgba(255,255,255,.08);
+    --gold:#e8a33d;
+    --gold2:#f5c678;
+    --coral:#ff6b5e;
+    --green:#6ee7b7;
+    --violet:#b39ddb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg0);color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-weight:400;font-size:17.5px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:#14100a;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* Hero */
+  .hero{position:relative;padding:96px 0 72px;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(232,163,61,.14), transparent 60%),
+      radial-gradient(700px 500px at 0% 20%, rgba(179,157,219,.10), transparent 55%);
+    pointer-events:none;
+  }
+  .hero .kicker{
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:10px;
+  }
+  .hero .kicker::before{content:"";width:34px;height:2px;background:var(--gold);display:inline-block;}
+  .hero h1{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:clamp(34px,5.6vw,64px);line-height:1.08;letter-spacing:-.01em;max-width:18ch;margin-bottom:22px;}
+  .hero h1 em{font-style:italic;color:var(--gold2);}
+  .hero .sub{color:var(--muted);font-size:clamp(16px,2vw,20px);max-width:60ch;font-weight:300;}
+  .hero .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+    border-radius:999px;padding:8px 16px;font-size:13.5px;color:var(--cream);background:rgba(255,255,255,.03);
+  }
+  .chip b{color:var(--gold2);font-weight:600;}
+  .hero-art{position:relative;margin-top:46px;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -20px rgba(0,0,0,.7);}
+  .hero-art img{display:block;width:100%;height:auto;}
+  .hero-art .glass{
+    position:absolute;left:14px;bottom:14px;right:14px;backdrop-filter:blur(12px);
+    background:rgba(12,16,32,.55);border:1px solid var(--line);border-radius:14px;
+    padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .hero-art .glass .title{font-size:14px;color:var(--cream);font-weight:500;flex:1 1 220px;}
+  .hero-art .glass .auth{font-size:12px;color:var(--muted);}
+
+  section{padding:72px 0;}
+  section:nth-child(even){background:var(--bg1);}
+  .s-head{margin-bottom:40px;}
+  .s-head .tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .s-head .tag::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .s-head h2{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.15;letter-spacing:-.01em;max-width:24ch;}
+  .s-head p{color:var(--muted);margin-top:12px;max-width:70ch;font-weight:300;}
+
+  .tldr{background:linear-gradient(135deg,#1c2544 0%,rgba(20,28,58,.4) 100%);border:1px solid rgba(232,163,61,.25);border-radius:18px;padding:30px 32px;}
+  .tldr p{font-size:20px;font-weight:300;color:var(--cream);}
+  .tldr p b{color:var(--gold2);font-weight:600;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);}
+  .card:hover{transform:translateY(-4px);border-color:rgba(232,163,61,.45);}
+  .card .num{font-family:'Fraunces',Georgia,serif;font-size:13px;letter-spacing:.18em;color:var(--gold);margin-bottom:14px;display:block;}
+  .card h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;line-height:1.2;margin-bottom:12px;letter-spacing:-.01em;}
+  .card p{color:var(--muted);font-size:16px;font-weight:300;}
+  .card blockquote{margin:16px 0 0;padding:12px 16px;border-left:2px solid var(--gold);font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:16px;color:var(--cream);background:rgba(232,163,61,.07);border-radius:8px;}
+  .card blockquote cite{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:12px;color:var(--muted);margin-top:8px;}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
+  .step{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;gap:18px;}
+  .step .n{flex:0 0 44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1508;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--cream);}
+  .step p{color:var(--muted);font-size:16px;font-weight:300;}
+  .step .when{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);}
+
+  .quotes{column-count:3;column-gap:22px;}
+  .quote{break-inside:avoid;margin-bottom:20px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;}
+  .quote::before{content:"\201C";position:absolute;top:6px;left:16px;font-family:'Fraunces',serif;font-size:56px;color:var(--gold);opacity:.5;line-height:1;}
+  .quote p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:19px;color:var(--cream);line-height:1.55;padding-left:14px;}
+  .quote cite{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:12px;color:var(--muted);margin-top:12px;padding-left:14px;}
+
+  .ai-panel{border-radius:20px;padding:40px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1233 0%,#0f1b2b 60%,#10301f 130%);border:1px solid rgba(179,157,219,.35);}
+  .ai-panel h3{font-family:'Fraunces',serif;font-weight:400;font-size:26px;margin-bottom:14px;}
+  .ai-panel h3 span{color:var(--violet);font-style:italic;}
+  .ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:20px;}
+  .ai-grid .b{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;font-size:15.5px;color:var(--cream);font-weight:300;}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:10px;}
+  .stat{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .stat .v{font-family:'Fraunces',serif;font-size:34px;color:var(--gold2);line-height:1;}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:8px;}
+
+  .frame{display:flex;gap:20px;margin-top:12px;flex-wrap:wrap;}
+  .frame .col{flex:1 1 300px;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:26px;}
+  .frame .col h4{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+  .frame .col ul{list-style:none;}
+  .frame .col li{color:var(--muted);font-size:16px;font-weight:300;padding:9px 0 9px 24px;position:relative;border-bottom:1px dashed rgba(255,255,255,.06);}
+  .frame .col li:last-child{border-bottom:none;}
+  .frame .col li::before{content:"→";position:absolute;left:0;color:var(--gold);}
+
+  footer{padding:60px 0 80px;border-top:1px solid var(--line);color:var(--muted);}
+  footer a{color:var(--gold2);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  .foot-grid{display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:300;}
+
+  @media (max-width:720px){
+    .hero{padding:64px 0 48px;}
+    section{padding:56px 0;}
+    .quotes{column-count:1;}
+    .hero-art .glass .auth{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">{{KICKER}}</div>
+    <h1>{{HERO_TITLE_1}}<br><em>{{HERO_TITLE_EM}}</em></h1>
+    <p class="sub">{{HERO_SUB}}</p>
+    <div class="meta">
+      {{HERO_CHIPS}}
+    </div>
+    <div class="hero-art">
+      <!-- NOTE: embed the source thumbnail as base64 for a self-contained file:
+           python3 -c "import base64;print(base64.b64encode(open('thumb.jpg','rb').read()).decode())"
+           then put data:image/jpeg;base64,<that> into src. -->
+      <img src="{{THUMB_SRC}}" alt="{{THUMB_ALT}}">
+      <div class="glass">
+        <div class="title">{{GLASS_TITLE}}</div>
+        <div class="auth">{{GLASS_AUTH}}</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==============================================================
+     SECTIONS — copy the component blocks below as needed:
+
+     .tldr         one-paragraph takeaway + bold key phrases
+     .stats        numeric facts band
+     .grid > .card numbered key insight cards (each with blockquote quote)
+     .steps > .step numbering an actionable "do it today" ritual
+     .frame > .col columns for pro/con or framework comparisons
+     .ai-panel > .ai-grid special highlight panel (AI/future topics)
+     .quotes > .quote pull-quote wall
+
+     Standard page flow used for podcast/long-form sources:
+     1)  TL;DR (tldr + stats)
+     2)  Framework / mental model (frame + optional steps)
+     3)  Key insights (grid of cards)
+     4)  Special topic panel (ai-panel if relevant)
+     5)  Agency / evidence section (stats) if the source cites research
+     6)  Concrete application (steps)
+     7)  Quotes worth keeping (quotes)
+     8)  footer (credits + how this was made)
+
+     FOR SHALLOW SOURCES (articles / shorts): keep it tight — the
+     full flow is overkill. Use: tldr, a compact grid of the 3-6
+     core ideas, one steps block of applications, and quotes.
+============================================================== -->
+
+<section>
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">The one-paragraph takeaway</div>
+      <h2>{{TLDR_HEADING}}</h2>
+    </div>
+    <div class="tldr">
+      <p>
+        {{TLDR_BODY}}
+      </p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="v">{{STAT1_V}}</div><div class="l">{{STAT1_L}}</div></div>
+      <div class="stat"><div class="v">{{STAT2_V}}</div><div class="l">{{STAT2_L}}</div></div>
+      <div class="stat"><div class="v">{{STAT3_V}}</div><div class="l">{{STAT3_L}}</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">Key insights</div>
+      <h2>{{INSIGHTS_HEADING}}</h2>
+    </div>
+    <div class="grid">
+      <!-- CARD template (copy per insight) -->
+      <div class="card">
+        <span class="num">01</span>
+        <h3>{{INSIGHT_TITLE}}</h3>
+        <p>{{INSIGHT_BODY}}</p>
+        <blockquote>{{INSIGHT_QUOTE}}<cite>{{INSIGHT_QUOTE_CITE}}</cite></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">Concrete application · today</div>
+      <h2>{{APPLY_HEADING}}</h2>
+      <p>{{APPLY_INTRO}}</p>
+    </div>
+    <div class="steps">
+      <!-- STEP template (copy per action) -->
+      <div class="step">
+        <div class="n">1</div>
+        <div>
+          <h3>{{STEP_TITLE}}</h3>
+          <p>{{STEP_BODY}}</p>
+          <span class="when">{{STEP_WHEN}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">Quotes worth keeping</div>
+      <h2>Lines to pin somewhere you'll see them daily.</h2>
+    </div>
+    <div class="quotes">
+      <!-- QUOTE template (copy per quote) -->
+      <div class="quote"><p>{{QUOTE_TEXT}}</p><cite>{{QUOTE_CITE}}</cite></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div><b style="color:var(--cream)">Source</b> —&nbsp;<a href="{{SOURCE_URL}}">{{SOURCE_LABEL}}</a></div>
+    <div><b style="color:var(--cream)">How this was made</b> —&nbsp;This page was produced from the source's transcript using the <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>-based media-to-insights skill: content fetched, read in full, and distilled into key insights and concrete applications.</div>
+    <div style="font-size:12px;color:#6b7696">{{DISCLAIMER}}</div>
+  </div>
+</footer>
+
+</body>
+</html>
