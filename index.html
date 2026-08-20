@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Knowledge Hub — Notes &amp; Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#eaf0ff;
+    --muted:#9aa7c4;
+    --cream:#f4efe6;
+    --bg0:#0c1020;
+    --bg1:#101731;
+    --bg2:#141c3a;
+    --line:rgba(255,255,255,.08);
+    --gold:#e8a33d;
+    --gold2:#f5c678;
+    --green:#6ee7b7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg0);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:#14100a;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+
+  /* Hero */
+  .hero{position:relative;padding:110px 0 80px;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(1000px 560px at 82% -10%, rgba(232,163,61,.16), transparent 60%),
+      radial-gradient(800px 560px at 0% 30%, rgba(179,157,219,.10), transparent 55%);
+    pointer-events:none;
+  }
+  .hero .kicker{
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:10px;
+  }
+  .hero .kicker::before{content:"";width:34px;height:2px;background:var(--gold);display:inline-block;}
+  .hero h1{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:400;font-size:clamp(38px,6vw,70px);
+    line-height:1.05;letter-spacing:-.015em;max-width:18ch;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold2);}
+  .hero .sub{color:var(--muted);font-size:clamp(16px,2vw,20px);max-width:58ch;font-weight:300;}
+  .hero .meta{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:13.5px;color:var(--cream);background:rgba(255,255,255,.03);
+  }
+  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--green);}
+
+  /* Section head */
+  section{padding:40px 0 90px;}
+  .s-head{margin-bottom:36px;}
+  .s-head .tag{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+    font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  }
+  .s-head .tag::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .s-head h2{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:clamp(26px,3.6vw,40px);line-height:1.15;letter-spacing:-.01em;}
+  .s-head p{color:var(--muted);margin-top:10px;max-width:70ch;font-weight:300;}
+
+  /* Card grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px;}
+  .card{
+    background:var(--bg2);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;text-decoration:none;color:inherit;
+    transition:transform .22s,border-color .22s,box-shadow .22s;
+  }
+  .card:hover{transform:translateY(-5px);border-color:rgba(232,163,61,.5);box-shadow:0 22px 50px -18px rgba(232,163,61,.18);}
+  .card figure{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;}
+  .card figure img{width:100%;height:100%;object-fit:cover;transition:transform .35s;}
+  .card:hover figure img{transform:scale(1.05);}
+  .card figure .tag-badge{
+    position:absolute;left:12px;top:12px;backdrop-filter:blur(8px);
+    background:rgba(12,16,32,.6);border:1px solid rgba(232,163,61,.4);
+    color:var(--gold2);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;
+  }
+  .card .body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1;}
+  .card .meta{font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:10px;display:flex;gap:12px;flex-wrap:wrap;}
+  .card .meta b{color:var(--gold2);font-weight:600;}
+  .card h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;line-height:1.2;letter-spacing:-.01em;margin-bottom:10px;}
+  .card p{color:var(--muted);font-size:15px;font-weight:300;flex:1;}
+  .card .go{
+    margin-top:18px;font-size:13px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:8px;
+  }
+  .card .go::after{content:"→";transition:transform .2s;}
+  .card:hover .go::after{transform:translateX(5px);}
+
+  /* Empty state for upcoming */
+  .coming{background:var(--bg1);border:1px dashed rgba(255,255,255,.14);border-radius:18px;padding:26px;}
+  .coming h3{font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:var(--muted);margin-bottom:6px;}
+  .coming p{color:#6b7696;font-size:14px;font-weight:300;}
+
+  footer{padding:56px 0 80px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:300;}
+  footer a{color:var(--gold2);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  .foot{display:flex;flex-direction:column;gap:8px;}
+
+  @media (max-width:720px){
+    .hero{padding:72px 0 56px;}
+    section{padding:32px 0 64px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Business Knowledge · Notes &amp; Insights</div>
+    <h1>A library of <em>business wisdom</em> — distilled.</h1>
+    <p class="sub">Key insights and concrete takeaways from the conversations that matter — the world's best operators, writers, and thinkers, processed and summarized so you can use them today.</p>
+    <div class="meta">
+      <span class="chip"><span class="dot"></span>New pages added continuously</span>
+      <span class="chip">1 published · more coming</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">The library</div>
+      <h2>Pick a conversation. Steal an idea.</h2>
+      <p>Every entry is a fully self-contained page built from the source conversation — transcripts processed, key ideas extracted, and turned into actions you can take immediately.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- ============================================================
+        NEW CARDS — copy the whole <a class="card"> block below (from
+        "<!-- CARD: ..." to its matching </a>), paste it before this
+        comment, and change the values to point at your new page.
+        Title + thumbnail: put any image in assets/img/ and reference it.
+      ============================================================ -->
+
+      <!-- CARD: Seth Godin — The Art of Quitting -->
+      <a class="card" href="seth-godin-insights.html">
+        <figure>
+          <img src="assets/img/seth-godin-thumb.jpg" alt="Seth Godin on The Diary of a CEO" loading="lazy">
+          <span class="tag-badge">Podcast → Notes</span>
+        </figure>
+        <div class="body">
+          <div class="meta"><span><b>Aug 2026</b></span><span>· The Diary of a CEO</span><span>· 1:53:06</span></div>
+          <h3>The Art of Quitting — Seth Godin</h3>
+          <p>Why "never quit" is wrong, the hidden "but" that keeps you stuck, the Dip vs. the cul-de-sac, and a concrete 6-step ritual to unknot any situation — before AI makes the choice for you.</p>
+          <span class="go">Read the notes</span>
+        </div>
+      </a>
+
+      <!-- NEW CARDS: paste new card blocks here (copy the template above) -->
+
+      <div class="coming">
+        <h3>More wisdom coming soon…</h3>
+        <p>Future insights pages will appear here as they're published. The library grows one conversation at a time.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>Built and maintained with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> transcripts · audio never leaves your machine.</div>
+    <div>Deployed as GitHub Pages · <a href="https://github.com/niba-tech/Business-Knowledge">repo</a>.</div>
+  </div>
+</footer>
+
+</body>
+</html>
