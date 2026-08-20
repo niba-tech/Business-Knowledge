@@ -12,7 +12,7 @@ fetch the real source content, read it in full, distill faithful insights,
 render a beautiful standalone HTML page, register it in the hub, then commit
 and push.
 
-Knowledge-hub default repo: `/Users/nicubagiu/Porjects/Business-Knowledge`
+Knowledge-hub default repo: `/Users/nicubagiu/Porjects/YT-Business-knowledge/Business-Knowledge`
 (hosted on GitHub Pages at `https://niba-tech.github.io/Business-Knowledge/`).
 
 ## Rules of quality (non-negotiable)
@@ -45,7 +45,7 @@ Working directory: put intermediate files in a new per-source working folder
 wants a preview without publishing).
 
 Publishing target: the knowledge-hub repo
-(`/Users/nicubagiu/Porjects/Business-Knowledge`) by default. If it isn't a git
+(`/Users/nicubagiu/Porjects/YT-Business-knowledge/Business-Knowledge`) by default. If it isn't a git
 repo or doesn't exist, clone it first:
 `git clone https://github.com/niba-tech/Business-Knowledge.git`. Ask the user
 if there's any doubt about where the file should live.
