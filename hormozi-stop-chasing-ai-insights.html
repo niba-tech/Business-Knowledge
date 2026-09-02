@@ -102,9 +102,9 @@
   .step .when{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);}
 
   .quotes{column-count:3;column-gap:22px;}
-  .quote{break-inside:avoid;margin-bottom:20px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;}
+  .quote{break-inside:avoid;display:inline-block;width:100%;margin-bottom:20px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;box-sizing:border-box;}
   .quote::before{content:"\201C";position:absolute;top:6px;left:16px;font-family:'Fraunces',serif;font-size:56px;color:var(--gold);opacity:.5;line-height:1;}
-  .quote p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:19px;color:var(--cream);line-height:1.55;padding-left:14px;}
+  .quote p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(16px,1.3vw,18.5px);color:var(--cream);line-height:1.55;padding-left:14px;overflow-wrap:break-word;word-break:normal;}
   .quote cite{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:12px;color:var(--muted);margin-top:12px;padding-left:14px;}
 
   .ai-panel{border-radius:20px;padding:40px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1233 0%,#0f1b2b 60%,#10301f 130%);border:1px solid rgba(179,157,219,.35);}
@@ -131,6 +131,9 @@
   footer a:hover{text-decoration:underline;}
   .foot-grid{display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:300;}
 
+  @media (max-width:960px){
+    .quotes{column-count:2;}
+  }
   @media (max-width:720px){
     .hero{padding:64px 0 48px;}
     section{padding:56px 0;}
