@@ -15,6 +15,20 @@ and push.
 Knowledge-hub default repo: `/Users/nicubagiu/Porjects/YT-Business-knowledge/Business-Knowledge`
 (hosted on GitHub Pages at `https://niba-tech.github.io/Business-Knowledge/`).
 
+### Checkpoint/resume
+
+On startup the skill checks for an existing `.checkpoint.json` in the working
+directory. If found, it loads the saved state and resumes from the next step,
+skipping already-completed work. The checkpoint contains:
+
+- `step` — which step was last completed (1=fetched, 2=read, 3=distilled, 4=built, 5=registered)
+- `transcript_text` — partial transcript text if step < 3
+- `insights` — distilled insights if step < 4
+- `url` and `title` — the source URL and title, so the skill can identify
+  what to resume
+
+If no checkpoint exists, the skill proceeds from Step 1 as normal.
+
 ## Rules of quality (non-negotiable)
 
 1. **Never fabricate content.** Insights, quotes, and claims must come from
@@ -32,7 +46,25 @@ Knowledge-hub default repo: `/Users/nicubagiu/Porjects/YT-Business-knowledge/Bus
 
 ## Step 1 — Identify the source and output location
 
-Ask for (or derive) the URL, then classify it:
+Ask for (or derive) the URL, then classify it.
+
+### Checkpoint/resume support
+
+A checkpoint file `.checkpoint.json` in the working directory stores progress
+so the skill can resume later if AI tokens are exhausted or the process is
+interrupted. On startup the skill checks for an existing checkpoint and
+automatically resumes from the last saved step.
+
+Checkpoint steps:
+1. **fetched** — content (captions/markdown) has been downloaded
+2. **read** — full transcript/article text has been read/extracted
+3. **distilled** — insights have been generated
+4. **built** — HTML page has been constructed
+5. **registered** — page has been added to the hub
+
+If a checkpoint exists with step < 5, the skill will skip completed steps
+and resume from the next one. The checkpoint also stores the partial
+transcript text and any insights distilled so far, so no work is lost.
 
 | Source | Fetch method |
 | --- | --- |
@@ -75,6 +107,14 @@ it fully. If there are multiple pages or long-form material, chunk the reading.
 Grab the article title, author, publication, publication date, and page URL
 for the hero chips.
 
+---
+
+## Step 2 — Save checkpoint after content fetch
+
+After successfully downloading captions (YouTube) or fetching article markdown
+(Article), save a checkpoint file `.checkpoint.json` in the working directory
+so the process can be resumed later if AI tokens are exhausted.
+
 ## Step 3 — Read the entire source
 
 Read the full content before writing. For long videos (multi-hour), read the
@@ -84,6 +124,15 @@ note word-count and make sure you have seen the ending, not just the opening.
 For **Shorts** (< ~3 min): content is thin by nature. Produce a compact page —
 takeaway, the 3–6 real ideas, applications, a couple quotes. Do not pad.
 If a Short genuinely has no substance, say so in the page instead of inflating.
+
+---
+
+## Step 3 — Save checkpoint after reading
+
+After reading the full transcript (YouTube) or article (Article), save a
+checkpoint so progress is preserved if the process is interrupted or AI tokens
+are burned. The checkpoint stores the transcript text read so far and marks
+the step as "read".
 
 ## Step 4 — Distill
 
@@ -98,6 +147,15 @@ Structure your thinking before building the page:
 - **Evidence / data** the source cites (keep the actual numbers).
 - **Concrete applications** — "do this today" actions with rough time-boxes.
 - **Quotes worth keeping** — punchy, self-contained lines.
+
+---
+
+## Step 4 — Save checkpoint after distillation
+
+After distilling insights, save a checkpoint with the generated insights and
+mark the step as "distilled". This allows resuming later even if AI tokens
+are exhausted — the skill will load the saved insights and continue from
+Step 5 (building the HTML page).
 
 ## Step 5 — Build the HTML page
 
