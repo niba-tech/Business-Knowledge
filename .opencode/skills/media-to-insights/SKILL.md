@@ -109,12 +109,6 @@ for the hero chips.
 
 ---
 
-## Step 2 — Save checkpoint after content fetch
-
-After successfully downloading captions (YouTube) or fetching article markdown
-(Article), save a checkpoint file `.checkpoint.json` in the working directory
-so the process can be resumed later if AI tokens are exhausted.
-
 ## Step 3 — Read the entire source
 
 Read the full content before writing. For long videos (multi-hour), read the
@@ -196,33 +190,21 @@ Self-containment checklist:
 
 Edit `<hub>/index.html`:
 
-1. Copy the whole `<a class="card">` block of the latest entry (there is a
-   clearly marked template comment in the file: `NEW CARDS — copy the whole
-   <a class="card"> block`).
-2. Change: `href` → the new slug, image reference (`assets/img/<slug>.jpg` —
-   **copy the thumbnail into `<hub>/assets/img/`** with
-   `cp <workdir>/thumb.jpg <hub>/assets/img/<slug>.jpg`), the tag-badge,
-   the `.meta` date/source line, the card `<h3>` title, the 1–2 sentence
-   `<p>` blurb, and the `go` label.
-3. Keep the `NEW CARDS:` comment marker in place so future entries can be
-   added the same way. The "coming soon" placeholder can remain below the
-   newest real card.
-4. The hub uses **relative links** (`seth-godin-insights.html`,
-   `assets/img/...`) so it works under the GitHub Pages sub-path — never use
-   absolute GitHub URLs.
+1. Copy the whole `<a class="card">` block of the latest entry (there is a clearly marked template comment in the file: `NEW CARDS — copy the whole <a class="card"> block`).
+2. Change: `href` → the new slug, image reference (`assets/img/<slug>.jpg` — **copy the thumbnail into `<hub>/assets/img/`** with `cp <workdir>/thumb.jpg <hub>/assets/img/<slug>.jpg`), the tag-badge, the `.meta` date/source line, the card `<h3>` title, the 1–2 sentence `<p>` blurb, and the `go` label.
+3. Keep the `NEW CARDS:` comment marker in place so future entries can be added the same way. The "coming soon" placeholder can remain below the newest real card.
+4. The hub uses **relative links** (`seth-godin-insights.html`, `assets/img/...`) so it works under the GitHub Pages sub-path — never use absolute GitHub URLs.
+
+**Important:** The Media section is identified by `<section id="media-section">`. When adding new cards, paste the new `<a class="card">` block **before the `<div class="coming">`** divider inside the Media section, so all media cards are grouped together.
 
 ## Step 7 — Verify
 
-- Open `<hub>/index.html` locally (`open` on macOS) and click through to the
-  new page; confirm the thumbnails render and the new card links resolve.
-- Confirm the page HTML parses: tag balance check optional but quick
-  (`python3 -c "import re;html=open('<page>').read();[print(t,len(re.findall(r'<%s[\s>]'%t,html)),len(re.findall(r'</%s>'%t,html))) for t in ['section','div','blockquote','footer','nav','header']]"`).
+- Open `<hub>/index.html` locally (`open` on macOS) and click through to the new page; confirm the thumbnails render and the new card links resolve.
+- Confirm the page HTML parses: tag balance check optional but quick (`python3 -c "import re;html=open('<page>').read();[print(t,len(re.findall(r'<%s[\s>]'%t,html)),len(re.findall(r'</%s>'%t,html))) for t in ['section','div','blockquote','footer','nav','header']]"`).
 
 ## Step 8 — Commit & push
 
-Working tree is a git repo (the hub). Only commit after verification, and
-only if the user asked to publish (default: yes for the hub workflow; confirm
-first if the intent is ambiguous):
+Working tree is a git repo (the hub). Only commit after verification, and only if the user asked to publish (default: yes for the hub workflow; confirm first if the intent is ambiguous):
 
 ```
 cd <hub>
@@ -231,12 +213,7 @@ git commit -m "Add <Title> insights page"
 git push
 ```
 
-Push uses the user's stored keychain credential (osxkeychain + GitHub PAT);
-if a push errors with `could not read Username`, remind the user:
-`git config --global credential.helper osxkeychain`, then `git push` and enter
-`nicubagiu` with their token as the password. GitHub Pages auto-rebuilds on
-push — the new page is live at
-`https://niba-tech.github.io/Business-Knowledge/<slug>-insights.html`.
+Push uses the user's stored keychain credential (osxkeychain + GitHub PAT); if a push errors with `could not read Username`, remind the user: `git config --global credential.helper osxkeychain`, then `git push` and enter `nicubagiu` with their token as the password. GitHub Pages auto-rebuilds on push — the new page is live at `https://niba-tech.github.io/Business-Knowledge/<slug>-insights.html`.
 
 ## Troubleshooting
 
