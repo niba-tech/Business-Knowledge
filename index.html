@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Knowledge Hub — Notes &amp; Insights</title>
+<title>Business Knowledge Hub — Notes & Insights</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -120,36 +120,62 @@
   }
 </style>
 </head>
+
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Business Knowledge · Notes &amp; Insights</div>
+    <div class="kicker">Business Knowledge · Notes & Insights</div>
     <h1>A library of <em>business wisdom</em> — distilled.</h1>
     <p class="sub">Key insights and concrete takeaways from the conversations that matter — the world's best operators, writers, and thinkers, processed and summarized so you can use them today.</p>
     <div class="meta">
       <span class="chip"><span class="dot"></span>New pages added continuously</span>
-      <span class="chip">3 published · more coming</span>
+      <span class="chip">Published library</span>
     </div>
   </div>
 </header>
 
+<!-- ============================================================
+      LANDING PAGE — navigate between Media and Books
+      ============================================================ -->
 <section>
   <div class="wrap">
     <div class="s-head">
-      <div class="tag">The library</div>
-      <h2>Pick a conversation. Steal an idea.</h2>
-      <p>Every entry is a fully self-contained page built from the source conversation — transcripts processed, key ideas extracted, and turned into actions you can take immediately.</p>
+      <div class="tag">Navigate</div>
+      <h2>Choose your path</h2>
+      <p>Explore distilled insights from media conversations or browse curated book reviews.</p>
+    </div>
+    <div class="grid">
+      <div class="card" style="background:var(--bg1);border-color:rgba(232,163,61,.3);">
+        <div class="body">
+          <h3>Media Clips</h3>
+          <p>Podcasts and videos processed with yt-dlp transcripts, extracted key ideas, and concrete applications.</p>
+          <a href="#media-section" style="color:var(--gold);font-weight:600;"> Browse media reviews</a>
+        </div>
+      </div>
+      <div class="card" style="background:var(--bg1);border-color:rgba(232,163,61,.3);">
+        <div class="body">
+          <h3>Book Reviews</h3>
+          <p>Extended book reviews with key insights, applications, and quotes worth keeping.</p>
+          <a href="#books-section" style="color:var(--gold);font-weight:600;"> Browse book reviews</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+      MEDIA SECTION — YouTube/clips insights
+      ============================================================ -->
+<section id="media-section">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">Media</div>
+      <h2>Podcast & Video Insights</h2>
+      <p>Key ideas and concrete takeaways from the world's best conversations — distilled so you can use them today.</p>
     </div>
 
     <div class="grid">
-
-      <!-- ============================================================
-        NEW CARDS — copy the whole <a class="card"> block below (from
-        "<!-- CARD: ..." to its matching </a>), paste it before this
-        comment, and change the values to point at your new page.
-        Title + thumbnail: put any image in assets/img/ and reference it.
-      ============================================================ -->
 
       <!-- CARD: Seth Godin — The Art of Quitting -->
       <a class="card" href="seth-godin-insights.html">
@@ -179,8 +205,6 @@
         </div>
       </a>
 
-      <!-- NEW CARDS: paste new card blocks here (copy the template above) -->
-
       <!-- CARD: Mo Gawdat — AGI by 2027 -->
       <a class="card" href="gawdat-agi-insights.html">
         <figure>
@@ -209,123 +233,73 @@
         </div>
       </a>
 
-      <!-- ============================================================
-        BOOKS SECTION — book review cards
-        ============================================================ -->
-      <section>
-        <div class="s-head">
-          <div class="tag">Books</div>
-          <h2>Book Reviews</h2>
-          <p>Extended book reviews with key insights, applications, and quotes.</p>
-        </div>
-        <div class="grid">
-
-          <!-- CARD: The Pragmatic Programmer -->
-          <a class="card" href="the-pragmatic-programmer-book-review.html">
-            <figure>
-              <img src="assets/img/books/the-pragmatic-programmer-thumb.jpg" alt="The Pragmatic Programmer book cover" loading="lazy">
-              <span class="tag-badge">Book → Review</span>
-            </figure>
-            <div class="body">
-              <div class="meta"><span><b>2026</b></span><span>· Andrew Hunt Thomas</span></div>
-              <h3>The Pragmatic Programmer</h3>
-              <p>A classic guide offering practical advice for software developers. It covers essential practices like writing tests early, embracing continuous learning, and documenting your work to build maintainable codebases.</p>
-              <span class="go">Read the review</span>
-            </div>
-          </a>
-
-          <!-- CARD: Some Random Book -->
-          <a class="card" href="some-random-book-book-review.html">
-            <figure>
-              <img src="assets/img/books/placeholder-thumb.jpg" alt="Some Random Book cover" loading="lazy">
-              <span class="tag-badge">Book → Review</span>
-            </figure>
-            <div class="body">
-              <div class="meta"><span><b>2026</b></span><span>· John Doe</span></div>
-              <h3>Some Random Book</h3>
-              <p>A review of Some Random Book by John Doe. This work explores key ideas and provides actionable takeaways for the reader.</p>
-              <span class="go">Read the review</span>
-            </div>
-          </a>
-
-        </div>
-      </section>
-
-      
-      <!-- CARD: The Pragmatic Programmer -->
-      <a class="card" href="the-pragmatic-programmer-book-review.html">
-        <figure>
-          <img src="assets/img/books/placeholder-thumb.jpg" alt="The Pragmatic Programmer book cover" loading="lazy">
-          <span class="tag-badge">Book → Review</span>
-        </figure>
-        <div class="body">
-          <div class="meta"><span><b>Oct 14, 2026</b></span><span>· Andrew Hunt Thomas</span></div>
-          <h3>The Pragmatic Programmer</h3>
-          <p>A review of The Pragmatic Programmer by Andrew Hunt Thomas, with key insights, applications, and quotes worth keeping.</p>
-          <span class="go">Read the review</span>
-        </div>
-      </a>
-
-      <!-- CARD: The Pragmatic Programmer -->
-      <a class="card" href="the-pragmatic-programmer-book-review.html">
-        <figure>
-          <img src="assets/img/books/placeholder-thumb.jpg" alt="The Pragmatic Programmer book cover" loading="lazy">
-          <span class="tag-badge">Book → Review</span>
-        </figure>
-        <div class="body">
-          <div class="meta"><span><b>Oct 14, 2026</b></span><span>· Andrew Hunt Thomas</span></div>
-          <h3>The Pragmatic Programmer</h3>
-          <p>A review of The Pragmatic Programmer by Andrew Hunt Thomas, with key insights, applications, and quotes worth keeping.</p>
-          <span class="go">Read the review</span>
-        </div>
-      </a>
-
-      <!-- CARD: Atomic Habits -->
-      <a class="card" href="atomic-habits-book-review.html">
-        <figure>
-          <img src="assets/img/books/placeholder-thumb.jpg" alt="Atomic Habits book cover" loading="lazy">
-          <span class="tag-badge">Book → Review</span>
-        </figure>
-        <div class="body">
-          <div class="meta"><span><b>Oct 14, 2026</b></span><span>· James Clear</span></div>
-          <h3>Atomic Habits</h3>
-          <p>A review of Atomic Habits by James Clear, with key insights, applications, and quotes worth keeping.</p>
-          <span class="go">Read the review</span>
-        </div>
-      </a>
-
-      <!-- CARD: The Pragmatic Programmer -->
-      <a class="card" href="the-pragmatic-programmer-book-review.html">
-        <figure>
-          <img src="assets/img/books/placeholder-thumb.jpg" alt="The Pragmatic Programmer book cover" loading="lazy">
-          <span class="tag-badge">Book → Review</span>
-        </figure>
-        <div class="body">
-          <div class="meta"><span><b>Oct 14, 2026</b></span><span>· Andrew Hunt Thomas</span></div>
-          <h3>The Pragmatic Programmer</h3>
-          <p>A review of The Pragmatic Programmer by Andrew Hunt Thomas, with key insights, applications, and quotes worth keeping.</p>
-          <span class="go">Read the review</span>
-        </div>
-      </a>
-
-      <!-- CARD: Atomic Habits -->
-      <a class="card" href="atomic-habits-book-review.html">
-        <figure>
-          <img src="assets/img/books/placeholder-thumb.jpg" alt="Atomic Habits book cover" loading="lazy">
-          <span class="tag-badge">Book → Review</span>
-        </figure>
-        <div class="body">
-          <div class="meta"><span><b>Oct 14, 2026</b></span><span>· James Clear</span></div>
-          <h3>Atomic Habits</h3>
-          <p>A review of Atomic Habits by James Clear, with key insights, applications, and quotes worth keeping.</p>
-          <span class="go">Read the review</span>
-        </div>
-      </a>
-<div class="coming">
+      <div class="coming">
         <h3>More wisdom coming soon…</h3>
         <p>Future insights pages will appear here as they're published. The library grows one conversation at a time.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+      BOOKS SECTION — book review cards
+      ============================================================ -->
+<section id="books-section">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">Books</div>
+      <h2>Book Reviews</h2>
+      <p>Extended book reviews with key insights, applications, and quotes worth keeping.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- CARD: The Pragmatic Programmer -->
+      <a class="card" href="the-pragmatic-programmer-book-review.html">
+        <figure>
+          <img src="assets/img/books/the-pragmatic-programmer-thumb.jpg" alt="The Pragmatic Programmer book cover" loading="lazy">
+          <span class="tag-badge">Book → Review</span>
+        </figure>
+        <div class="body">
+          <div class="meta"><span><b>2026</b></span><span>· Andrew Hunt Thomas</span></div>
+          <h3>The Pragmatic Programmer</h3>
+          <p>A classic guide offering practical advice for software developers. It covers essential practices like writing tests early, embracing continuous learning, and documenting your work to build maintainable codebases.</p>
+          <span class="go">Read the review</span>
+        </div>
+      </a>
+
+      <!-- CARD: Atomic Habits -->
+      <a class="card" href="atomic-habits-book-review.html">
+        <figure>
+          <img src="assets/img/books/placeholder-thumb.jpg" alt="Atomic Habits book cover" loading="lazy">
+          <span class="tag-badge">Book → Review</span>
+        </figure>
+        <div class="body">
+          <div class="meta"><span><b>Oct 14, 2026</b></span><span>· James Clear</span></div>
+          <h3>Atomic Habits</h3>
+          <p>A review of Atomic Habits by James Clear, with key insights, applications, and quotes worth keeping.</p>
+          <span class="go">Read the review</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+      WHY WE ARE DOING THIS
+      ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="s-head">
+      <div class="tag">Why we do this</div>
+      <h2>The purpose of this hub</h2>
+    </div>
+    <div class="tldr">
+      <p>
+        We build this library because information alone isn't enough — it's what you do with it that matters. In a world where new ideas emerge every day, having a curated, searchable collection of distilled wisdom helps you cut through the noise. We process hours of conversations and pages of text so you don't have to, extracting the core insights and turning them into actions you can take today. This hub is your personal knowledge base for business, technology, and personal growth — a place where every review, every insight, and every lesson is saved in one place, ready for you to explore, reference, and apply. Because the best ideas are useless unless they're put into practice, and this hub exists to make sure they aren't lost.
+      </p>
     </div>
   </div>
 </section>
